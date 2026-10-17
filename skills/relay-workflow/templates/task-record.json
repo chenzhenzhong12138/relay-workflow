@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "task_id": "task-01",
+  "batch_id": null,
+  "status": "ready",
+  "authoritative_record_path": null,
+  "dependencies": [],
+  "acceptance_round": 0,
+  "repair_rounds_used": 0,
+  "repair_history": [],
+  "problem_ledger": {},
+  "role_handles": {
+    "planner": null,
+    "implementer": null,
+    "tester": null
+  },
+  "recovery_mappings": [],
+  "manifest_path": null,
+  "manifest_sha256": null
+}

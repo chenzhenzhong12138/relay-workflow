@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.venv/
+.relay-workflow/
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.log
+.DS_Store
+Thumbs.db
+local-validation/

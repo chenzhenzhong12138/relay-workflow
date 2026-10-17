@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "operation": "spawn_agent",
+  "role": "implementer",
+  "task_id": "task-01",
+  "batch_id": null,
+  "round": 0,
+  "runtime": "codex",
+  "runtime_id": null,
+  "instructions_path": "references/roles/implementer.md",
+  "input_paths": [
+    "request.md",
+    "profile.md",
+    "plan.md"
+  ],
+  "output_path": "tasks/task-01/round-0/implementer-return.json",
+  "budget": {
+    "tool_calls": 30,
+    "wall_minutes": 45,
+    "command_timeouts_seconds": {
+      "read_search": 60,
+      "local_check": 300,
+      "long_build_export": 1800
+    }
+  },
+  "problem": null
+}

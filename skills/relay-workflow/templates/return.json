@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "role": "tester",
+  "task_id": "task-01",
+  "batch_id": null,
+  "round": 0,
+  "status": "BLOCKED",
+  "runtime": "codex",
+  "runtime_id": null,
+  "dimension": "integrated",
+  "dimensions": {
+    "functional": "not_run",
+    "engineering": "not_run",
+    "system": "not_run"
+  },
+  "manifest_path": null,
+  "manifest_sha256": null,
+  "artifact_paths": [],
+  "next_dispatch_path": "dispatch.json",
+  "problem": {
+    "problem_id": "task-01-required-tool",
+    "category": "external",
+    "reason": "missing_tool",
+    "owner_role": "planner",
+    "new_information": false,
+    "evidence_paths": [],
+    "missing_fields": [],
+    "contradiction": false,
+    "recovery_path": "Provide the tool required by the frozen profile before testing.",
+    "requested_action": "Return to the original planner with the missing condition.",
+    "within_frozen_scope": true,
+    "supplement_count": 0
+  },
+  "usage": {
+    "tool_calls": 0,
+    "elapsed_seconds": 0
+  }
+}

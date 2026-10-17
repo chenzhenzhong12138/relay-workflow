@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "task_id": "task-01",
+  "batch_id": null,
+  "round": 0,
+  "workroot": null,
+  "frozen_at": null,
+  "producer_stopped": false,
+  "files": [],
+  "input_dependencies": [],
+  "test_output_paths": [
+    ".relay-workflow/runs/example-run/tasks/task-01/round-0/evidence"
+  ]
+}
