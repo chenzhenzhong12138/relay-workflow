@@ -1,6 +1,6 @@
 # Route decisions and understandable progress
 
-This contract applies inside an explicitly started workflow. The original planner owns technical route decisions and user-facing explanations; main checks compact fields and relays text unchanged. Use existing roles, files, operations and budgets.
+This contract applies inside an explicitly started workflow. The original planner owns technical route decisions and user-facing explanations; main checks compact fields and relays text unchanged. Use existing roles, files, operations and budgets. Read [shared control fields and recovery](control-contract.md); it is authoritative for envelopes, cycle ownership, missing returns and diagnostic-stage boundaries.
 
 ## Before executing a route
 
@@ -16,9 +16,9 @@ An evidence-backed negative finding is useful progress. State the demonstrated f
 
 Set `route_review: true` immediately when evidence contradicts a critical premise, a required interface/model is unverified and invalidates the current inference, or a proposed workaround changes the agreed deliverable or mandatory acceptance. Also trigger after two consecutive work cycles on the same unresolved problem without decision-relevant new evidence.
 
-A cycle is a completed attempt to resolve the problem, including a review/analysis handoff, plus examination of its result. Repeated reasoning exchanges without new observations count toward the no-evidence limit. New evidence confirms/refutes a premise, locates an interface failure, narrows the cause with an observable result, or proves a changed behavior under relevant acceptance. A useful failed experiment counts. Code edits, a new manifest, another report, repeated identical failures, or multiple AI opinions alone do not count. Record the actual observation and what judgment changed; do not invent a confidence percentage.
+A cycle is one assigned resolution attempt and its final result, as defined by the control contract. A substantive analysis attempt may end without evidence; ordinary forwarding alone is not a new cycle. Repeated substantive reasoning attempts without new observations count toward the no-evidence limit. New evidence confirms/refutes a premise, locates an interface failure, narrows the cause with an observable result, or proves a changed behavior under relevant acceptance. A useful failed experiment counts. Code edits, a new manifest, another report, repeated identical failures, or multiple AI opinions alone do not count. Record the actual observation and what judgment changed; do not invent a confidence percentage.
 
-Track `no_evidence_cycles` under the stable underlying `problem_id` in the existing problem ledger. Preserve it across repair rounds, handoffs, recovery and aliases. Reset it only after explaining the decision-relevant evidence, not when a role starts again. Unknown history goes to planner reconciliation.
+Main alone accounts for `no_evidence_cycles` under the stable underlying problem using the deduplicated cycle ledger. The assigned result role reports observations; other roles do not increment the count. Preserve it across repair rounds, handoffs, recovery and aliases. Reset it only from an explained evidence event; unknown history goes to planner reconciliation.
 
 ## Routing has priority over automatic repair
 
@@ -26,7 +26,7 @@ An implementer or tester that detects a trigger stops repetitive candidate chang
 
 The planner records the review decision in the existing plan/notes and sets `route_review: false` only on its supported next dispatch; this does not clear history or counters. The planner reads the evidence and decides among: continue with a supported, testable repair; perform a smaller distinguishing experiment; change the technical route within authorized scope; or close as blocked with a recovery condition. Explain the recommendation, alternatives that materially differ, expected benefit, cost/risk and remaining uncertainty. Reversible choices inside existing scope may proceed autonomously. Changing the user's goal, required acceptance, permissions or resource limits requires the corresponding user decision; a route review grants none of these.
 
-When evidence is insufficient, the planner may dispatch one bounded diagnostic for that unresolved review episode, using existing roles and remaining budgets. Record the question, predictions, stop condition and evidence required before resuming repairs. If the diagnostic provides no decision-relevant evidence, close as blocked until relevant evidence or conditions change; do not repeat review/diagnostic dispatches. Preserve all repair, supplement, scope and execution counters. A diagnostic that actually changes the candidate to repair failed acceptance consumes a repair round. Three repairs is a ceiling, not a target.
+When evidence is insufficient, the planner may dispatch one bounded diagnostic stage for that unresolved review episode, using existing roles and remaining budgets. Use the [control contract](control-contract.md) to predeclare the finite checks, question, predictions, stop conditions and evidence required before resuming repairs; several predeclared checks may belong to this one stage. If the diagnostic provides no decision-relevant evidence, close as blocked until relevant evidence or conditions change; do not repeat review/diagnostic dispatches. Preserve all repair, supplement, scope and execution counters. A diagnosis that requires a candidate repair first closes its diagnostic result and follows the control contract into a new tester-owned repair/retest cycle; the actual repair consumes its existing round. Three repairs is a ceiling, not a target.
 
 ## Resolve disagreements with action
 
@@ -43,6 +43,10 @@ For each main acceptance outcome, maintain one current integration candidate and
 The implementer records a new variant's purpose, exact source/manifest, relation to the baseline and observed result in existing notes. The tester binds conclusions to the actual candidate. The planner consolidates selection in the existing task record/plan and handoff: candidate path/version, role (fallback/current/comparison), verified coverage, failed or untested gates, and selected/retained/superseded status with reason. Use indexing and clear entry points; preserve history and applicable deletion restrictions, without creating another task board or silently overwriting other work.
 
 Every package closeout includes a **Current choice** statement: the usable version and its proven scope, or explicitly no qualified candidate for the current goal; the one recommended next candidate/action and why; and the location of the full candidate/evidence index. “Recommended for further testing” is distinct from “accepted for use.” Select using the agreed gates and relevant evidence, not revision numbers or a mixture of different candidates' PASS results. A working fallback may cover only old functionality. Consolidating the result and its reproducible entry point is part of delivery; leaving a list of unexplained alternatives is incomplete closeout.
+
+## Reuse documents without weakening evidence
+
+Preserve frozen acceptance, candidate identity and independent reports. Unchanged input indexes, interface guides or acceptance definitions may be referenced by exact version/hash from the current plan; new copies are required only for changed inputs or contracts. Keep one authoritative technical closeout in the handoff. A separate final summary may be a short pointer when it adds no distinct information; the user summary remains concise and self-contained. Dispatch supplies the actual readable paths, so roles do not require duplicate documents merely for conventional filenames. Update relevant differences rather than rewriting unchanged history.
 
 ## Progress explanations
 

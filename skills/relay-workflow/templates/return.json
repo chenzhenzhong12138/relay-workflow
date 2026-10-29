@@ -38,5 +38,7 @@
   "route_review": false,
   "route_review_path": null,
   "no_evidence_cycles": 0,
-  "stage_summary_path": null
+  "stage_summary_path": null,
+  "cycle_id": "task-01-r0",
+  "progress_event": null
 }

@@ -33,7 +33,7 @@ The same pattern continues the original tester for retesting and the original pl
 
 ## Wait without monitoring
 
-`collaboration.wait_agent` subscribes to returned events, at most 60,000 ms per wait under this workflow. A timeout is not a failure, supplement opportunity or reason to probe. No `list_agents` polling, log/directory scans, status inquiries or nudges. Native completion messages are routed according to compact return metadata; main never reads a long report to diagnose a failure.
+`collaboration.wait_agent` subscribes to returned events, at most 60,000 ms per wait under this workflow. A normal wait timeout is not a failure, supplement opportunity or reason to probe. No `list_agents` polling, log/directory scans, status inquiries or nudges. Native completion messages are routed according to compact return metadata; main never reads a long report to diagnose a failure. At a recorded invocation deadline or real host error only, [control recovery](../control-contract.md) permits one bounded native status inspection if available, followed by result handling or an unknown-state recovery report. It never permits repeated polling or duplicate dispatch.
 
 Collaboration tools are called directly, outside `functions.exec` or shell programs. Use the current host's ordinary file/command tools for mechanical request/state records, preserving its permission checks. Do not copy those tool names into an OpenCode request.
 

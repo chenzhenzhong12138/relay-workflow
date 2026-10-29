@@ -21,6 +21,8 @@ Each dispatch or continuation allows at most 30 actual tool calls, 15 minutes fo
 
 Use a real timeout and safe termination method available in the host. Preserve useful outputs on timeout. A persistent process must have a bounded lifetime and safe stop method. If those controls cannot be provided, do not start an unbounded command. Missing time/call accounting is a recovery problem, not a reason to reset counters.
 
+Missing returns use only the recorded-window, once-only native recovery inspection in [control](control-contract.md). Normal wait timeouts remain non-events; unavailable control cannot be replaced by fabricated results or duplicate dispatch. Existing numeric budgets and limits are unchanged.
+
 Route review preserves all existing counters and authority. The one bounded diagnostic allowed by [decision/reporting](decision-reporting.md) is a technical reassessment within remaining scope/budget, not another information supplement or a reset of exhausted retries. Missing external conditions remain blocked.
 
 ## Information supplements versus repairs

@@ -60,6 +60,14 @@ These are synthetic policy scenarios and expected behavior, not claims of comple
 
 The user summary answers what is usable, what was verified, which unknowns changed, and why the next step is worthwhile. A feasibility question answered negatively may close its investigation; an unfinished implementation goal retains its failed or blocked status.
 
+## 6. Control-boundary scenarios
+
+These are synthetic expected behaviors, not live-run results.
+
+- The implementer freezes a candidate and returns no progress event; the assigned tester returns one final event for the same cycle. Delivery of that event twice changes the counter once. A repair/retest gets a new cycle ID.
+- A registered invocation deadline expires and the host returns control without a role result. Main may use one supported native inspection. A still-running or unknown state pauses dependent dispatch, preserves technical counters, and never starts a second writer. A foreground host that never yields cannot be cancelled by this policy alone.
+- A diagnostic stage predeclares two distinguishing checks. The first is uninformative; the second may still run within the same existing budget. The stage closes once, stops early on a decisive observation, and cannot restart under a new episode ID without relevant new evidence or changed conditions.
+
 ## Recovery example
 
 Use the path returned by a real run; `example-run` below is a placeholder:

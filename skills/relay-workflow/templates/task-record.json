@@ -23,5 +23,6 @@
     "current": null,
     "recommended_next": null,
     "entries": []
-  }
+  },
+  "progress_state_path": "main-state.json"
 }

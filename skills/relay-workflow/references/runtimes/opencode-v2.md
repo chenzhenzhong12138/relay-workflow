@@ -41,7 +41,7 @@ Keep the role name unchanged when continuing it. Continue the original planner/t
 
 Default foreground `subagent` waits for the final response; main does not need a separate waiting tool. There is no Codex `wait_agent`, `followup_task`, `fork_turns` or pure `send_message` parameter to transplant here. Do not add a fictional `timeout_ms` to this tool. Foreground waiting is not an execution timeout; specialists retain their own command and stop budgets.
 
-If a real tool result says `running`, accept only native completion notification: do not sleep, poll sessions/logs, request status or duplicate the task. Supplements and repairs are dispatched only after the original role returns. Without a final return, never invent a status or guarantee platform termination.
+If a real tool result says `running`, accept only native completion notification: do not sleep, poll sessions/logs, request status or duplicate the task. Supplements and repairs are dispatched only after the original role returns. Without a final return, never invent a status or guarantee platform termination. The sole exception to ordinary passive waiting is [control recovery](../control-contract.md): after a real error or an expired recorded invocation window, and only once the host returns control, use at most one supported native inspection. If none exists or status remains unknown, report that uncertainty and recovery condition; do not invent a timeout/status API or restart a potentially active writer.
 
 OpenCode only continues children of the current parent session. A different primary conversation or a Codex run needs file-based recovery with new actual handles and a recorded mapping; retain task scope and counters. Do not probe or pass foreign IDs as if they could resume.
 

@@ -72,6 +72,8 @@ One tester covers `functional`, `engineering`, and `system` checklists. It tests
 
 Critical premises contradicted by evidence, or two cycles without decision-relevant new evidence, return to the planner before another repair. Feasible factual disputes lead to an actual distinguishing check. Closeout names the usable candidate and its proven scope, or explicitly no qualified candidate, and gives a clear next recommendation. See [route decisions and understandable progress](skills/relay-workflow/references/decision-reporting.md) and the [illustrative convergence scenarios](examples/README.md#5-route-reassessment-and-candidate-convergence).
 
+Shared [control fields and recovery](skills/relay-workflow/references/control-contract.md) define one result event per freeze/acceptance cycle, a single counter writer, and a once-only native inspection after a recorded abnormal invocation condition. Unknown execution pauses dependent work without inventing acceptance or launching another writer. A bounded diagnostic is a stage with finite predeclared checks, not necessarily one command. Existing numeric limits are unchanged.
+
 ## Deliberate limits
 
 | Default | Bound |

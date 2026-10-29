@@ -12,7 +12,7 @@ All role invocations receive the assigned role document, raw request path, run/w
 
 ## Decision and explanation contract
 
-All roles read [route decisions and progress explanations](decision-reporting.md). Route-review returns take priority over the ordinary FAIL/repair branch. Main may read and relay only the supplied plain-language summary, without interpreting the technical evidence.
+All roles read [shared control fields and recovery](control-contract.md) and [route decisions and progress explanations](decision-reporting.md). Shared control fields are included in every return; role-specific lists only add fields. Route-review returns take priority over the ordinary FAIL/repair branch. Main may read and relay only the supplied plain-language summary, without interpreting the technical evidence.
 
 ## Dispatch
 
@@ -30,6 +30,9 @@ All roles read [route decisions and progress explanations](decision-reporting.md
 | `output_path` | Expected compact return metadata path, nullable for user relay |
 | `budget` | Finite `tool_calls`, `wall_minutes` and command timeout values |
 | `problem` | Null or the problem record below |
+| `cycle_id`, `progress_owner` | Stable unique attempt ID and the single result owner from the control contract; nullable before an attempt |
+| `execution_guard` | Invocation ID, actual start/deadline, runtime handle and recovery-inspection marker; main fills mechanical values before delegation |
+| `diagnostic` | Null or the bounded diagnostic-stage question/checks/stop/resume contract |
 
 `spawn_agent` starts a new implementer (or initial/recovered planner as the runtime adapter specifies). `spawn_single_tester` starts the task's one new tester after freeze. `followup_task` targets a recorded actual role ID; it never creates a replacement task silently. `return_to_planner` targets the original planner. `relay_to_user` forwards the planner-authored `user-summary.md` unchanged. A dispatch can supply `instructions_path` or `summary_path` as appropriate. The active [runtime adapter](runtimes.md) translates labels into actual APIs; these labels are not tool names.
 
@@ -37,7 +40,7 @@ On implementer `frozen`, main mechanically dispatches the one tester. Tester `PA
 
 ## Compact return metadata
 
-Every return contains `schema_version`, `role`, `task_id`, `batch_id`, `round`, `status`, `runtime`, `runtime_id`, `artifact_paths`, `next_dispatch_path`, `problem`, and `usage` (`tool_calls`, `elapsed_seconds`). Use actual returned handles; never fabricate or infer them from cache directories. If a child cannot observe its assigned ID, it returns null; main fills the envelope from the actual spawn result before any continuation. `status` is one of `ready`, `frozen`, `PASS`, `FAIL`, `BLOCKED`, `complete` or `stopped` as appropriate to the role. A tester additionally returns `dimension: "integrated"`, `dimensions` with `functional`, `engineering`, `system`, `manifest_path` and `manifest_sha256`. An implementer returns freeze/manifest paths, `producer_stopped`, and `repair_performed`. Metadata is a pointer and assertion for routing, not the acceptance evidence itself. Every new return also includes `route_review` (boolean), `route_review_path` (path or null), `no_evidence_cycles` (nonnegative integer for the current stable problem), and `stage_summary_path` (plain-language evidence paragraph or null). A true review flag requires the stable problem record and an existing evidence/review path. Preserve these fields in dispatches that route the issue. For old runs with missing fields, the planner reconciles the reports and ledger; do not silently assume false or zero.
+Every return contains `schema_version`, `role`, `task_id`, `batch_id`, `round`, `status`, `runtime`, `runtime_id`, `artifact_paths`, `next_dispatch_path`, `problem`, and `usage` (`tool_calls`, `elapsed_seconds`). Use actual returned handles; never fabricate or infer them from cache directories. If a child cannot observe its assigned ID, it returns null; main fills the envelope from the actual spawn result before any continuation. `status` is one of `ready`, `frozen`, `PASS`, `FAIL`, `BLOCKED`, `complete` or `stopped` as appropriate to the role. A tester additionally returns `dimension: "integrated"`, `dimensions` with `functional`, `engineering`, `system`, `manifest_path` and `manifest_sha256`. An implementer returns freeze/manifest paths, `producer_stopped`, and `repair_performed`. Metadata is a pointer and assertion for routing, not the acceptance evidence itself. Every new return also includes `route_review` (boolean), `route_review_path` (path or null), `no_evidence_cycles` (nonnegative integer for the current stable problem), and `stage_summary_path` (plain-language evidence paragraph or null). A true review flag requires the stable problem record and an existing evidence/review path. Preserve these fields in dispatches that route the issue. Every new return also carries `cycle_id` and `progress_event` as defined by the [shared control contract](control-contract.md); main is the single runtime counter writer. The returned count echoes the last supplied ledger value until main applies a final event. For old runs with missing fields, the planner reconciles the reports and ledger; do not silently assume false or zero.
 
 For batches, include compact `task_results` with each task's stable ID, round, status, manifest binding and repair count. A batch aggregate cannot conceal a failed/blocked task or replace per-task ledgers. Main forwards these fields mechanically.
 
@@ -48,6 +51,8 @@ The planner reads full reports, updates authoritative task records and writes th
 Required keys: `problem_id` (stable for the same underlying blocker), `category` (`scope`, `implementation`, `reproduction`, `contract`, `external`), `reason`, `owner_role`, `new_information` (boolean), `evidence_paths` (array), `missing_fields` (array), `contradiction` (boolean), `recovery_path` (string or null), `requested_action` (string), `within_frozen_scope` (boolean), `supplement_count` (0–2).
 
 `reason` is one of `scope_unclosed`, `acceptance_failure`, `missing_tool`, `missing_data`, `missing_device`, `missing_permission`, `missing_user_input`, `api_error`, `quota`, `invalid_session`, `invalid_manifest`, `budget`, `no_progress`, `malformed_return`, `other_external`. Do not set `new_information=true` merely because text was rewritten. Main forwards the returned condition to its owner using [limits](limits.md); the planner reconciles contradictory or incomplete records without inventing results.
+
+Main owns invocation windows and the deduplicated cycle ledger in its existing `main-state.json`. Task records and human logs are projections/references, not additional counter writers. Persist the processed cycle and resulting counter together. Follow [control recovery](control-contract.md) for missing returns; unknown execution does not consume a technical no-evidence cycle or permit duplicate writers.
 
 ## Recovery and identity
 

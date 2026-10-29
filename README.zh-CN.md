@@ -80,6 +80,8 @@ flowchart TD
 
 关键前提被证据推翻，或连续两轮没有影响判断的新证据时，先回原规划重审，再决定是否续修。可执行且获授权的事实检查须交实际结果；收尾须明确当前可用候选及已证范围，或直说暂无合格候选，并给出下一步推荐。详见[路线重审与浅显汇报](skills/relay-workflow/references/decision-reporting.md)和[收敛情境示例](examples/README.md#5-route-reassessment-and-candidate-convergence)。
 
+公共字段、cycle去重与异常收口统一在[控制合同](skills/relay-workflow/references/control-contract.md)：冻结与验收只结算一次，修复复测使用新cycle；真实错误或登记deadline到后，在宿主交回控制时最多一次原生核对。执行未知时暂停依赖，不冒充验收结论、不并发重派。一次有界诊断可含有限预声明检查；现有数字上限不变。未变指南可引用明确冻结版本，重复收尾正文可改为指针，用户摘要仍自包含。
+
 ## 默认边界
 
 | 项目 | 默认限制 |
