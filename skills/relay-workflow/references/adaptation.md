@@ -7,6 +7,8 @@ Include:
 - Actual workroot, authoritative task-record path, allowed write/read areas, preserved unrelated changes and existing user authority.
 - One main acceptance goal, selected dependency-closed slice, package IDs/order, batch size and any exact finite user exceptions.
 - Intended users/use context, required input sources, deliverable formats, candidate boundaries and dependency/interface assumptions.
+- The answerable acceptance question or observable outcome; the actual baseline/version, active configuration/entry point and evidence paths establishing the current state. The original planner owns outcome reconciliation and closeout.
+- A brief effort rationale: necessary roles under the explicitly selected chain, proportionate package/check scope, reusable evidence and the reason for the finite budget. Evidence-backed infeasibility answers retain their limited scope; they do not complete an unfinished implementation goal.
 - A mapping from acceptance criteria to all three dimensions, concrete checks/thresholds, evidence locations and any predeclared non-applicable dimension with a reason.
 - Required tools, data, accounts, devices, environments and external conditions; which are available and which block acceptance.
 - Role and command budgets, real timeout/safe-stop methods, output locations, stop/rollback conditions and recovery requirements.

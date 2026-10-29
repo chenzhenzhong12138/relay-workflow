@@ -16,5 +16,12 @@
   },
   "recovery_mappings": [],
   "manifest_path": null,
-  "manifest_sha256": null
+  "manifest_sha256": null,
+  "decision_history": [],
+  "candidate_selection": {
+    "usable": null,
+    "current": null,
+    "recommended_next": null,
+    "entries": []
+  }
 }

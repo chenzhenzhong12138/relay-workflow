@@ -58,9 +58,9 @@ flowchart TD
     P --> I[Fresh implementer for each task]
     I --> F[Stop all modifying activity and freeze a manifest]
     F --> T[One fresh integrated tester for the task]
-    T -->|FAIL, repair capacity remains| R[Same implementer repairs; same tester retests]
+    T -->|FAIL, no route review, repair capacity remains| R[Same implementer repairs; same tester retests]
     R --> F
-    T -->|PASS, blocked, or repairs exhausted| P
+    T -->|Route review, PASS, blocked, or repairs exhausted| P
     P -->|Next allowed task| I
     P -->|Closeout summary| M
     M -->|Forward summary unchanged| U
@@ -69,6 +69,8 @@ flowchart TD
 The main does not interpret technical requirements, decompose work, diagnose, implement, test, monitor progress, or write a technical summary. Children do not recursively delegate. Detailed plans and evidence stay in run files; the main receives compact routing metadata and real runtime IDs.
 
 One tester covers `functional`, `engineering`, and `system` checklists. It tests a manifest-bound candidate, never repairs it, and cannot combine PASS results from different candidates without explicitly rebinding unaffected evidence. Missing required evidence remains blocked or not run.
+
+Critical premises contradicted by evidence, or two cycles without decision-relevant new evidence, return to the planner before another repair. Feasible factual disputes lead to an actual distinguishing check. Closeout names the usable candidate and its proven scope, or explicitly no qualified candidate, and gives a clear next recommendation. See [route decisions and understandable progress](skills/relay-workflow/references/decision-reporting.md) and the [illustrative convergence scenarios](examples/README.md#5-route-reassessment-and-candidate-convergence).
 
 ## Deliberate limits
 
@@ -80,7 +82,7 @@ One tester covers `functional`, `engineering`, and `system` checklists. It tests
 | Role dispatch or continuation | At most 30 actual tool calls; planner 15 minutes, implementer/tester 45 minutes |
 | Failed acceptance | Initial round 0, then at most three actual repair rounds |
 | Problem supplements | At most two, only with qualifying new information; counted separately from repairs |
-| No progress | Stop after two consecutive steps without progress |
+| No progress | Reassess after two cycles without decision-relevant evidence; edits and repeated opinions alone do not reset the count |
 | Larger requests | Accept a dependency-closed slice; record at most three follow-on topics without automatically doing them |
 
 These are agent operating contracts, not automatic platform cutoffs. External prerequisites, permission gaps, and API or quota errors return blocked without automatic retry. The full [limits](skills/relay-workflow/references/limits.md) define search, command retry, timeout, exception, and recovery rules. No bulk file or directory deletion is allowed, and existing permissions still apply.

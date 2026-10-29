@@ -34,5 +34,9 @@
   "usage": {
     "tool_calls": 0,
     "elapsed_seconds": 0
-  }
+  },
+  "route_review": false,
+  "route_review_path": null,
+  "no_evidence_cycles": 0,
+  "stage_summary_path": null
 }

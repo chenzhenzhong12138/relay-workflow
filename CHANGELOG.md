@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased — 2026-10-29
+
+- Reassess contradicted premises and repeated evidence stagnation before automatic repair, preserving existing counters and authorization.
+- Resolve feasible factual disputes with actual checks and consolidate candidate selection into a usable result or an explicit unmet goal.
+- Report plain-language progress with decisive evidence, limitations, current choice and the reason for the next action.
+- Define answerable outcomes, verify the active baseline, retain planner ownership of closeout and scale effort to task risk.
+- Add compatible routing metadata and candidate-selection starter fields, with illustrative convergence scenarios.
+
 ## 0.1.0 — 2026-10-17
 
 - A domain-neutral, explicitly invoked workflow Skill for Codex and OpenCode.

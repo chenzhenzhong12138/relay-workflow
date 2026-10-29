@@ -14,6 +14,8 @@ Write one integrated report per task per round, with `dimension: integrated` and
 
 Overall `PASS` requires the current manifest to match, all required checks to pass, and all non-applicable decisions to have been frozen by the planner. A missing mandatory condition yields overall `BLOCKED`, with affected checks `not_run`/`BLOCKED`. A completed check that violates acceptance yields `FAIL`. Do not invent outputs, substitute a mock for required reality, or use the mere existence of a report as proof.
 
+For a disputed factual claim, the report identifies the shared input/version, distinguishing criterion, actual check and outcome, or the exact missing condition. State which claim is supported/refuted/unresolved. Merely proposing a check or restating concern is not completed verification. Candidate records keep verified, failed and untested gates separate; the planner's handoff includes the Current choice required by [decision/reporting](decision-reporting.md).
+
 ## Repairs and evidence reuse
 
 On `FAIL`, report stable problem IDs, failed criteria, reproduction evidence and the affected retest set. The original implementer repairs within the frozen scope, records actual repair use and freezes a new manifest. The original tester determines the final affected checks and retests them. Only the tester may retain unaffected evidence: explicitly bind each retained result to the new manifest and justify why its relevant inputs/dependencies are unchanged. Never concatenate PASS results from different candidates into an overall PASS. If impact is uncertain, rerun the necessary check or report blocked; main does not make this judgment.

@@ -16,10 +16,12 @@ Each dispatch or continuation allows at most 30 actual tool calls, 15 minutes fo
 
 - One problem: at most three targeted search/read rounds. Each round has a stated question and inspects its results before another search.
 - A failing command: initial attempt plus at most one retry supported by new evidence. Identical retries or retries after external/API/quota failure are forbidden.
-- Two consecutive work cycles without new evidence, a substantive artifact change, a valid verification result or a testable narrowing of the hypothesis: return `BLOCKED` with a recovery condition. Reworded plans, logs, repeated inputs or merely proposing another action do not count as progress.
+- Two consecutive work cycles on the same unresolved problem without decision-relevant new evidence: stop repetitive repairs and return to the original planner with `route_review: true`, following [decision/reporting](decision-reporting.md). Artifact edits, new manifests and repeated failures alone do not reset this count; record what actual observation changed the judgment. Contradicted critical premises trigger review immediately, before reaching the two-cycle or three-repair limits.
 - Read/search command: at most 60 seconds; local check/simulation: five minutes; long build/export: 30 minutes, unless a different finite command bound was frozen by the planner with a reason.
 
 Use a real timeout and safe termination method available in the host. Preserve useful outputs on timeout. A persistent process must have a bounded lifetime and safe stop method. If those controls cannot be provided, do not start an unbounded command. Missing time/call accounting is a recovery problem, not a reason to reset counters.
+
+Route review preserves all existing counters and authority. The one bounded diagnostic allowed by [decision/reporting](decision-reporting.md) is a technical reassessment within remaining scope/budget, not another information supplement or a reset of exhausted retries. Missing external conditions remain blocked.
 
 ## Information supplements versus repairs
 

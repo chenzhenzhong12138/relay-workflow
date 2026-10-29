@@ -19,7 +19,7 @@ The planner can freeze package A for converter behavior and package B for docume
 | Plan | Main → planner | Profile, A → B dependency, bounded dispatch |
 | A implementation | Main → fresh implementer A | Stopped producer, frozen converter manifest |
 | A acceptance | Main → fresh tester A | One integrated report for A's manifest |
-| If A fails | Same implementer A → same tester A | Actual repair count increments; new manifest and retest |
+| If A fails without a route-review trigger | Same implementer A → same tester A | Actual repair count increments; new manifest and retest |
 | Next package | Original planner → fresh implementer B | Documentation based on accepted A |
 | B acceptance | Main → fresh tester B | Examples checked against A; integrated report for B |
 | Closeout | Original planner → main → user | Authoritative statuses and verbatim user summary |
@@ -49,6 +49,16 @@ Expected closure: a frozen output and method, with evidence for arithmetic and r
 ```
 
 Expected closure: a frozen RTL candidate, real simulator evidence, and an integrated report whose offline scope is explicit. The planner chooses applicable engineering and integration checks for this teaching artifact. Passing this package would not establish timing closure, board operation, or acceptance of a larger hardware system.
+
+## 5. Route reassessment and candidate convergence
+
+These are synthetic policy scenarios and expected behavior, not claims of completed executions.
+
+- **Repeated repairs without evidence:** two source-changing repairs still export zero bytes, with no new interface observation and one repair remaining. Return `route_review: true` to the original planner before a third repair; retain the two used repairs. One bounded diagnostic may distinguish causes within remaining authority and budget. If it yields no decision-relevant evidence, close as blocked with a recovery condition.
+- **A testable disagreement:** two roles disagree about byte order on the same frozen input, and an independent decoder with known vectors is available and authorized. The assigned tester executes the distinguishing check and reports the real observation and its scope; another reasoning-only review is not verification.
+- **Conflicting candidates:** a baseline supports only old functionality; candidate A passes functionality but fails timing, and candidate B passes timing but fails functionality. State that the new goal has no qualified candidate. Keep the baseline's limited fallback scope explicit, record each candidate's status, and recommend one evidence-supported next action without combining A and B into a PASS.
+
+The user summary answers what is usable, what was verified, which unknowns changed, and why the next step is worthwhile. A feasibility question answered negatively may close its investigation; an unfinished implementation goal retains its failed or blocked status.
 
 ## Recovery example
 
